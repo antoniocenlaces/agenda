@@ -1,0 +1,68 @@
+body {
+    width: 60vh;
+    margin: 0 auto;
+}
+label {
+    display: inline;
+}
+.form-block {
+    margin: .5rem 0;
+
+}
+.form-label {
+    font-weight: bold;
+}
+.form-control {
+    width: 80%;
+}
+.form {
+    width: 50%;
+}
+.checkbox-label {
+    display: inline;
+}
+/*input:disabled {*/
+/*    background-color: black;*/
+/*    color: white;*/
+/*}*/
+/*input:required {*/
+/*    background-color: lightskyblue;*/
+/*    color: black;*/
+/*}*/
+button {
+    background-color: green;
+    border-radius: 0.5rem;
+    border: 2px double #1055d8;
+    color: #fff;
+    font-weight: bold;
+    height: 2rem;
+    min-width: 6rem;
+}
+button.reset {
+    background-color: red;
+}
+button.reset:disabled {
+    background-color: grey;
+}
+main button:hover {
+    border: 2px double #9bef9b;
+}
+caption {
+    font-weight: bold;
+}
+table {
+    border-collapse: collapse;
+    border: none;
+    width: 80%;
+}
+th {
+    border: 1px solid #000;
+    background-color: darkgray;
+    padding: 5px 10px;
+    text-align: center;
+}
+td {
+    border: 1px solid #000;
+    padding: 5px 10px;
+    text-align: center;
+}

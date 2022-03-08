@@ -29,7 +29,7 @@ label {
 /*    background-color: lightskyblue;*/
 /*    color: black;*/
 /*}*/
-button {
+.envia {
     background-color: green;
     border-radius: 0.5rem;
     border: 2px double #1055d8;
@@ -38,14 +38,26 @@ button {
     height: 2rem;
     min-width: 6rem;
 }
-button.reset {
+.borra {
     background-color: red;
+    border-radius: 0.5rem;
+    border: 2px double #1055d8;
+    color: #fff;
+    font-weight: bold;
+    height: 2rem;
+    min-width: 6rem;
 }
-button.reset:disabled {
+.borra:disabled {
     background-color: grey;
 }
-main button:hover {
+.envia:hover {
     border: 2px double #9bef9b;
+}
+.borra:hover {
+    border: 2px double #9bef9b;
+}
+.borra:disabled:hover {
+    border: 2px double #1055d8;
 }
 caption {
     font-weight: bold;

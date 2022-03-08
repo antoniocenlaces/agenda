@@ -30,7 +30,7 @@ if (isset($_POST['f1'])) {
 //RF3 Vamos a establecer una variable de error
     $error = false;
     $error = valida_nombre($nombre);
-    if (!$error)
+    if (!$error || ($_POST['f1']=='Borra'))
         $error=valida_telefono($tel,$nombre,$agenda);
 
     /*Identica los posibles errores a considerar:
@@ -60,7 +60,7 @@ if (isset($_POST['f1'])) {
         $opcion = $_POST['f1'];
         echo "<p>Valor de opción leido del botón: $opcion</p>";
         switch ($opcion) {
-            case "Borrar contactos":
+            case "Borrar":
                 echo "<p>Han pedido borrar todos los contactos</p>";
                 $agenda = [];
                 $contactos = sizeof($agenda);
@@ -83,9 +83,12 @@ if (isset($_POST['f1'])) {
                         $msj = "Se ha añadido el contacto de <span style='color:green'>$nombre</span>";
                         $agenda[$nombre] = $tel; //Add un contacto
                     }
+                    $disabled="";
                 }
                 break;
         }
+        echo "<p>Al acabar de analizar las acciones contenido de \$agenda:</p>";
+        var_dump($agenda);
     }
 
 }
@@ -114,8 +117,8 @@ if (isset($_POST['f1'])) {
         </div>
     </fieldset>
     <div class="form-block">
-        <button type="submit" name="f1" value="Añadir">Enviar</button>
-        <button type="reset" name="f1" value="Borrar contactos" class="reset" <?=$disabled?>>Borrar</button>
+        <button type="submit" name="f1" value="Añadir" class="envia">Enviar</button>
+        <button type="submit" name="f1" value="Borrar" class="borra" <?=$disabled?>>Borrar</button>
     </div>
     <?php
     foreach ($agenda as $nombre => $tel) {
@@ -134,5 +137,11 @@ if (isset($_POST['f1'])) {
         } ?>
     </tbody>
 </table>
+<hr>
+<?php
+// Imprimo el $msj con la acción realizada
+if (isset($msj))
+    echo "<h4>$msj</h4>";
+?>
 </body>
 </html>

@@ -62,8 +62,8 @@ if (isset($_POST['f1'])) {
         switch ($opcion) {
             case "Borrar":
                 echo "<p>Han pedido borrar todos los contactos</p>";
-                $agenda = [];
                 $contactos = sizeof($agenda);
+                $agenda = [];
                 $msj = "Se han borrado $contactos contactos de la agenda";
                 break;
             case "Añadir":

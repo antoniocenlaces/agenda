@@ -5,6 +5,7 @@ function valida_nombre(&$nombre) {
     $retorno = false;
     $expresion ="#^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð\ \'-]*$#";
     $ok = preg_match($expresion, $nombre);
+    echo "<p>Validando nombre $nombre. preg_match ha devuelto $ok</p>";
     if ($nombre == "") {
         $retorno = "El nombre no puede estar vacío.";
     }
@@ -39,8 +40,17 @@ function valida_telefono(&$tel,$nombre,$agenda) {
 if (isset($_POST['f1'])) {
 // RF2 Leer valores del formulario (nombre, tel, agenda)
     $nombre = filter_input(INPUT_POST, "nombre", FILTER_SANITIZE_STRING);
+    $tel = $_POST['telefono'];
+    $filtrada=filter_var($tel,FILTER_VALIDATE_INT);
+    echo "<p>Resultado de filter_var al iniciar código: $filtrada</p>";
+    var_dump($filtrada);
     $agenda = $_POST['agenda'] ?? []; // cargo el array $agenda del formulario oculto
     $disabled = "";
+    echo "Nombre después de filtrar: $nombre <br>";
+    echo "Teléfono después de filtrar: $tel  <br>";
+    var_dump($tel);
+    echo "contenido de \$agenda:  <br>";
+    var_dump($agenda);
     if (count($agenda)==0) //si $agenda está vacía, desabilito el botón de borrar
         $disabled="disabled";
 //RF3 Vamos a establecer una variable de error
@@ -53,23 +63,30 @@ if (isset($_POST['f1'])) {
     if (!$error) {
         //Realizamos la acción seleccionada (borrar, actualizar )
         //Generamos un mensaje , ya que la acción añadir puede ser una modificación del teléfono
+        echo "<p>No hay errores voy a analizar las acciones</p>";
         $opcion = $_POST['f1'];
+        echo "<p>Valor de opción leido del botón: $opcion</p>";
         switch ($opcion) {
             case "Borrar":
-                 $contactos = sizeof($agenda);
+                echo "<p>Han pedido borrar todos los contactos</p>";
+                $contactos = sizeof($agenda);
                 $agenda = [];
                 $msj = "Se han borrado $contactos contactos de la agenda";
                 break;
             case "Añadir":
                 //1
-                  if ($tel == "") {
-                     unset ($agenda[$nombre]); //Elimino un contacto
+                echo "<p>Han pedido Añadir. Vamos a ver el qué.</p>";
+                if ($tel == "") {
+                    echo "<p>Como el teléfono está vacío voy a borrar $agenda[$nombre]</p>";
+                    unset ($agenda[$nombre]); //Elimino un contacto
                     $msj = "Se ha elmininado el contacto de <span style='color:green'>$nombre</span>";
                 } else {
                     if (isset($agenda[$nombre])) {
-                         $agenda[$nombre] = $tel;
+                        echo "<p>El nombre escrito existe y se va a modificar</p>";
+                        $agenda[$nombre] = $tel;
                         $msj = "Se ha modificado el contacto de <span style='color:green'>$nombre</span>";
                     } else {
+                        echo "<p>Hay un nombre nuevo y voy a añadir</p>";
                         $msj = "Se ha añadido el contacto de <span style='color:green'>$nombre</span>";
                         $agenda[$nombre] = $tel; //Add un contacto
                     }
@@ -77,6 +94,8 @@ if (isset($_POST['f1'])) {
                 }
                 break;
         }
+        echo "<p>Al acabar de analizar las acciones contenido de \$agenda:</p>";
+        var_dump($agenda);
     }
 
 }

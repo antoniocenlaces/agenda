@@ -1,5 +1,5 @@
 body {
-    width: 60vh;
+    width: 90vh;
     margin: 0 auto;
 }
 label {
@@ -16,7 +16,7 @@ label {
     width: 80%;
 }
 .form {
-    width: 50%;
+    width: 100%;
 }
 .checkbox-label {
     display: inline;

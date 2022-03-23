@@ -19,23 +19,18 @@ function valida_telefono(&$tel,$nombre,$agenda) {
         $tel = filter_input(INPUT_POST, 'telefono', FILTER_SANITIZE_STRING);
         if ($tel == "") {
             //comprobamos si ese nombre ya existe en la agenda
-            var_dump($agenda);
             if (isset($agenda[$nombre])) { //si que existe y se puede borrar
                 return false;
             } else {
                 return "No se puede borrar un contacto inexistente";
             }
         } //$tel contiene algo.analicemos.
-        $expresion ="#^[0-9]*$#";
+        $expresion ="#^[+][0-9]*$#";
         $ok = preg_match($expresion, $tel); //comparo para ver si $tel contiene sólo caracteres numéricos
-        echo "<p>Contenido de \$tel: $tel. Valor de \$ok: $ok</p>";
-        var_dump($tel);
-        var_dump(($ok));
-        //is_numeric($tel)
         if ($ok) { // Teléfono contiene sólo números
             return false;
         } else { // el campo teléfono  no es válido
-            return "El campo teléfono solo puede contener números";
+            return "El campo teléfono puede iniciar con el caracter \'+\' y solo puede contener números";
         }
     }
 

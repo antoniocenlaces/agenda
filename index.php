@@ -25,7 +25,7 @@ function valida_telefono(&$tel,$nombre,$agenda) {
                 return "No se puede borrar un contacto inexistente";
             }
         } //$tel contiene algo.analicemos.
-        $expresion ="#^[+][0-9]*$#";
+        $expresion ="#^[+0-9][0-9]*$#";
         $ok = preg_match($expresion, $tel); //comparo para ver si $tel contiene sólo caracteres numéricos
         if ($ok) { // Teléfono contiene sólo números
             return false;

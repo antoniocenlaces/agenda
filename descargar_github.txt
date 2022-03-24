@@ -1,5 +1,5 @@
 1.-Descargar de git hub con clone:
 $git clone https://github.com/antoniocenlaces/agenda.git
 2.-Inicializar npm y descargar los módulos necesarios
-$npm init
+$npm install
 3.-Ejecutar index.php del directorio ./agenda con el navegador

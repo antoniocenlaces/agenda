@@ -1,4 +1,5 @@
 <?php
+// Comentarios para probar git
 // RF1  Si he apretado submit
 $disabled="disabled";
 function valida_nombre($nombre) {
